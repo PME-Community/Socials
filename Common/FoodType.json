@@ -1,0 +1,32 @@
+{
+  "FoodTypes": [
+    {
+      "Category": "Rice Based",
+      "Foods": [ "Coconut Rice", "Jollof Rice", "Fried Rice", "Pate", "Tuwo Masara", "Tuwo Shinkafa", "White Rice" ]
+    },
+    {
+      "Category": "Bean Based",
+      "Foods": [ "Akara", "Gbegiri", "Moin Moin", "Ewa Aganyin", "Okpa", "Adalu" ]
+    },
+    {
+      "Category": "Soups and Stews",
+      "Foods": [ "Banga Soup", "Ofe Akwu", "Miyan Kuka", "Ayamase", "Ewedu and Stew", "Edikang Ikong", "Pepper Soup", "Afang Soup", "Corn Soup", "Draw Soup", "Atama Soup", "Efo Riro", "Egusi", "Maafe", "Ogbono Soup", "White Soup", "Ofada Stew", "Groundnut Soup", "Oha Soup", "Edo Esan", "Ofe Owerri", "Achara Soup" ]
+    },
+    {
+      "Category": "Yam Based",
+      "Foods": [ "Yam Porridge", "Yam and Egg" ]
+    },
+    {
+      "Category": "Swallow",
+      "Foods": [ "Eba", "Fufu", "Lafun", "Iyan", "Amala", "Wheat", "Semo" ]
+    },
+    {
+      "Category": "Cereals",
+      "Foods": [ "Cornflakes", "Goldenmorn", "Oat", "Custard" ]
+    },
+    {
+      "Category": "Beverage",
+      "Foods": [ "Tea", "Fura", "Soy Milk" ]
+    }
+  ]
+}

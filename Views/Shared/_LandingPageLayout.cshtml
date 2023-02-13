@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Socials</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/image/favicon.ico" rel="icon">
+    <link href="~/image/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700|Open+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="landing-page-assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="landing-page-assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="landing-page-assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="landing-page-assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="landing-page-assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <div id="logo">
+                <h1><a asp-controller="Social" asp-action="Index">Socials</a></h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <a href="index.html"><img src="landing-page-assets/img/logo.png" alt=""></a> -->
+            </div>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                    <li><a class="nav-link scrollto" href="#about">About</a></li>
+                    <li><a class="nav-link scrollto" href="#features">Features</a></li>
+                    <li><a class="nav-link scrollto" href="#team">Team</a></li>
+                    <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
+                    <li><a class="nav-link" asp-controller="Auth" asp-action="Login">SignIn/Up</a></li>
+                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+        </div>
+    </header><!-- End Header -->
+    <!-- ======= Hero Section ======= -->
+    <section id="hero">
+
+        <div class="hero-text" data-aos="zoom-out">
+            <h2>Welcome to Socials</h2>
+            <p>We aim at bringing ease to your everyday life</p>
+            <a href="#about" class="btn-get-started scrollto">Get Started</a>
+        </div>
+
+        <div class="product-screens">
+
+            <div class="product-screen-1" data-aos="fade-up" data-aos-delay="400">
+                <img src="landing-page-assets/img/product-screen-1.png" alt="">
+            </div>
+
+            <div class="product-screen-2" data-aos="fade-up" data-aos-delay="200">
+                <img src="landing-page-assets/img/product-screen-2.png" alt="">
+            </div>
+
+            <div class="product-screen-3" data-aos="fade-up">
+                <img src="landing-page-assets/img/product-screen-3.png" alt="">
+            </div>
+
+        </div>
+
+    </section><!-- End Hero Section -->
+    @RenderBody()
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 text-lg-start text-center">
+                    <div class="copyright">
+                        &copy; Copyright <strong>Socials</strong>. All Rights Reserved
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <nav class="footer-links text-lg-right text-center pt-2 pt-lg-0">
+                        <a href="#intro" class="scrollto">Home</a>
+                        <a href="#about" class="scrollto">About</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Use</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </footer><!-- End  Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-chevron-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="landing-page-assets/vendor/aos/aos.js"></script>
+    <script src="landing-page-assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="landing-page-assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="landing-page-assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="landing-page-assets/js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+﻿@model FoodScheduling;
+@using Socials.Common;
+
+@{
+	ViewData["Title"] = "Meal Sheduling";
+	Layout = "~/Views/Shared/_ActivitiesLayout.cshtml";
+}
+
+<div class="content-header row">
+	<div class="content-header-left col-md-4 col-12 mb-2">
+		<h3 class="content-header-title">Meal Scheduling</h3>
+	</div>
+	<div class="content-header-right col-md-8 col-12">
+		<div class="breadcrumbs-top float-md-right">
+			<div class="breadcrumb-wrapper mr-1">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a href="index.html">Home</a>
+					</li>
+					<li class="breadcrumb-item active">
+						Scheduling
+					</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Table head options start -->
+<div class="row">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title">Scheduling</h4>
+				<a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+				<div class="heading-elements">
+					<ul class="list-inline mb-0">
+						<li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+						<li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="card-content collapse show">
+				<div class="col-2">
+					<fieldset class="form-group">
+						@Html.DropDownListFor(model => model.SelectedFrequency, new SelectList(Enum.GetValues(typeof(Enums.MealFrequencyEnum))), "-- Select a frequency --", new { @class = "form-control",														@id="customSelect" })
+						@Html.ValidationMessageFor(model => model.SelectedFrequency, "", new { @class = "text-danger" })
+					</fieldset>
+
+				</div>
+
+				<div class="card-body">
+					<p>Randomly displays meals from the available food populated</p>
+				</div>
+				<div class="table-responsive">
+					<table class="table" id="foodScheduleTable">
+						<thead class="thead-dark">
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Date</th>
+								<th scope="col">Breakfast</th>
+								<th scope="col">Launch</th>
+								<th scope="col">Dinner</th>
+							</tr>
+						</thead>
+						<tbody>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Table head options end -->
+
+<script type="text/javascript">
+	$(document).ready(function () {
+
+		$("#customSelect").change(function () {
+			var selectedValue = $(this).val();
+			$.ajax({
+				type: "GET",
+				url: "/MealScheduling/GetScheduledFood",
+				data: {
+					frequency: selectedValue
+				},
+				dataType: "json",
+				success: function (result) {
+					var rows = "";
+					var ind = 1;
+					for (i in result) {
+						console.log(ind);
+						console.log(result[i].mealDate);
+						console.log(result[i].breakfast);
+						console.log(result[i].launch);
+						console.log(result[i].dinner);
+						rows += "<tr><th> " + ind + " </th><td>" + result[i].mealDate + "</td><td>" + result[i].breakfast + "</td> <td> " + result[i].launch + " </td><td> " + result[i].dinner + " </td></tr> ";
+						ind++;
+					}
+					$("#foodScheduleTable tbody").html(rows);
+				}
+			});
+		});
+
+	});
+</script>

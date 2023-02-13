@@ -1,0 +1,130 @@
+﻿@{
+	ViewData["Title"] = "GOT";
+	Layout = "~/Views/Shared/_ActivitiesLayout.cshtml";
+}	
+
+<div class="content-header row">
+	<div class="content-header-left col-md-4 col-12 mb-2">
+		<h3 class="content-header-title">GOT Quotes</h3>
+	</div>
+	<div class="content-header-right col-md-8 col-12">
+		<div class="breadcrumbs-top float-md-right">
+			<div class="breadcrumb-wrapper mr-1">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a href="index.html">Home</a>
+					</li>
+					<li class="breadcrumb-item active">
+						GOT
+					</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="content-body">
+
+	<section id="text-alignments">
+
+		<div class="row">
+			<div class="col-lg-12 col-md-12">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">Quotes</h4>
+						<table id="dataTable">
+							<thead>
+								<tr>
+								
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+						<a class="btn btn-primary" id="btnGetQuoteList">Get 6 Random Quotes</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="card-headings">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<div class="card text-center">
+					<div class="card-header" id="nameContainer">
+						<p>Click new quote to generate a random quote!!!</p>
+					</div>
+					<div class="card-body">
+						<p class="card-text" id="houseContainer"> </p>
+						<h5 class="card-title" id="quoteContainer"> </h5>
+					</div>
+
+					<div class="card-footer text-muted">
+						<a id="btnGetQuoteAndDetails" class="btn btn-primary">New Quote</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+</div>
+
+
+<script type="text/javascript">
+	$(document).ready(function () {
+
+		getListOfQuotes();
+		quoteDetails();
+
+		const quoteButton = document.getElementById("btnGetQuoteAndDetails");
+		quoteButton.style.color = "white";
+
+		const quoteListButton = document.getElementById("btnGetQuoteList");
+		quoteListButton.style.color = "white";
+
+		const quoteListTable = document.getElementById("dataTable");
+		quoteListTable.classList.add("table");
+		quoteListTable.classList.add("thead-dark");
+		quoteListTable.classList.add("table-bordered");
+		quoteListTable.classList.add("table-striped");
+		
+
+		$("#btnGetQuoteAndDetails").click(function () {
+			quoteDetails();
+		});
+
+
+		$("#btnGetQuoteList").click(function () {
+			getListOfQuotes();
+		});
+
+		function quoteDetails(){
+			$.ajax({
+				type: "GET",
+				url: "/GameOfThroneQuote/RandomQuoteJson",
+				dataType: "json",
+				success: function (data) {
+					$("#nameContainer").html(data.model.character.name);
+					$("#houseContainer").html(data.model.character.house.name);
+					$("#quoteContainer").html(data.model.sentence);
+				}
+			});
+		}
+
+		function getListOfQuotes() {
+			$.ajax({
+				type: "GET",
+				url: "/GameOfThroneQuote/RandomQuoteList",
+				dataType: "json",
+				success: function (data) {
+					var rows = "";
+					for (i in data) {
+						rows += "<tr><td>" + data[i] + "</td></tr>";
+					}
+					$("#dataTable tbody").html(rows);
+				}
+			});
+		}
+
+	});
+</script>

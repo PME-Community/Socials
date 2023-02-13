@@ -1,0 +1,161 @@
+﻿@{
+	ViewData["Title"] = "Boredom Activities";
+	Layout = "~/Views/Shared/_ActivitiesLayout.cshtml";
+}
+
+<div class="content-header row">
+	<div class="content-header-left col-md-4 col-12 mb-2">
+		<h3 class="content-header-title">Boredom Activities</h3>
+	</div>
+	<div class="content-header-right col-md-8 col-12">
+		<div class="breadcrumbs-top float-md-right">
+			<div class="breadcrumb-wrapper mr-1">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a href="index.html">Home</a>
+					</li>
+					<li class="breadcrumb-item active">
+						Random Activities
+					</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="content-body">
+
+	<section id="card-headings">
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<div class="card text-center" style="height: 300px;">
+					<div class="card-header" id="typeContainer">
+						<p>Click new activity to generate a random activity!!!</p>
+					</div>
+					<div class="card-body">
+						<p class="card-text" id="numberOfParticipantsContainer"> </p>
+						<h5 class="card-title" id="activityContainer"> </h5>
+					</div>
+
+					<div class="card-footer text-muted">
+						<a id="btnGetActivity" class="btn btn-primary">New Activity</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+
+			<div class="col-lg-6 col-md-12" >
+				<div class="card" style="height: 300px;">
+					<div class="card-header">
+						<h4 class="card-title">Get activities based on type</h4>
+					</div>
+					<div class="card-block">
+						<div class="card-body">
+							<fieldset class="form-group">
+								<select class="custom-select" id="customSelect">
+									<option selected>Select an option</option>
+									<option value="education">Education</option>
+									<option value="recreational">Recreational</option>
+									<option value="social">Social</option>
+									<option value="diy">Diy</option>
+									<option value="charity">Charity</option>
+									<option value="cooking">Cooking</option>
+									<option value="relaxation">Relaxation</option>
+									<option value="music">Music</option>
+									<option value="busywork">Busy work</option>
+								</select>
+							</fieldset>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6 col-sm-12">
+				<div class="card text-center" style="height: 300px;">
+					<div class="card-header" id="typePreference">
+						<p>Click new activity to generate a random activity!!!</p>
+					</div>
+					<div class="card-body">
+						<p class="card-text" id="numberOfParticipants"> </p>
+						<h5 class="card-title" id="activity"> </h5>
+
+					</div>
+					<div class="card-footer text-muted">
+						<a id="btnGetActivityBasedOnType" class="btn btn-primary">New Activity</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+
+		const BoredomButton = document.getElementById("btnGetActivity");
+		BoredomButton.style.color = "white";
+
+		const typeButton = document.getElementById("btnGetActivityBasedOnType");
+		typeButton.style.color = "white";
+
+		$("#btnGetActivity").click(function () {
+			getActivity();
+		});
+
+		$("#btnGetActivityBasedOnType").click(function () {
+			getActivityByType();
+		});
+
+		$("#customSelect").change(function () {
+			var selectedValue = $(this).val();
+			$.ajax({
+				type: "GET",
+				url: "/BoredomActivities/RandomActivityByType",
+				data: {
+					activityType: selectedValue
+				},
+				dataType: "json",
+				success: function (result) {
+					$("#typePreference").html("Type: " + result.type);
+					$("#numberOfParticipants").html("Number of Participant(s): " + result.participants);
+					$("#activity").html("Activity: " + result.activity);
+				}
+			});
+		});
+
+		function getActivity() {
+			$.ajax({
+				type: "GET",
+				url: "/BoredomActivities/RandomActivityJson",
+				dataType: "json",
+				success: function (data) {
+					$("#typeContainer").html("Type: " + data.type);
+					$("#numberOfParticipantsContainer").html("Number of Participant(s): " + data.participants);
+					$("#activityContainer").html("Activity: " + data.activity);
+				}
+			});
+		}
+
+		function getActivityByType() {
+			var selectedValue = $("#customSelect").val();
+			$.ajax({
+				type: "GET",
+				url: "/BoredomActivities/RandomActivityByType",
+				data: {
+					activityType: selectedValue
+				},
+				dataType: "json",
+				success: function (result) {
+					$("#typePreference").html("Type: " + result.type);
+					$("#numberOfParticipants").html("Number of Participant(s): " + result.participants);
+					$("#activity").html("Activity: " + result.activity);
+				}
+			});
+		}
+
+	});
+</script>
